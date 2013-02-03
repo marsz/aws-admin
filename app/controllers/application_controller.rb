@@ -11,7 +11,23 @@ class ApplicationController < ActionController::Base
 
   def authenticate_user!
     super
-    self.class.load_and_authorize_resource unless params[:controller] == "devise/sessions" && ["create", "new"].include?(params[:action])
+    unless params[:controller] == "devise/sessions" && ["create", "new"].include?(params[:action])
+      if get_resource_class
+        self.class.load_and_authorize_resource :class => get_resource_class
+      else
+        self.class.load_and_authorize_resource
+      end
+    end
+  end
+
+  def resource_class_map
+    { "ec2/instances" => Ec2Instance,
+      "ec2/volumes" => Ec2Volume
+    }
+  end
+
+  def get_resource_class
+    resource_class_map[params[:controller]]
   end
 
 end
