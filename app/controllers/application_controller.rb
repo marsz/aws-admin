@@ -22,7 +22,8 @@ class ApplicationController < ActionController::Base
 
   def resource_class_map
     { "ec2/instances" => Ec2Instance,
-      "ec2/volumes" => Ec2Volume
+      "ec2/volumes" => Ec2Volume,
+      "ec2/snapshots" => Ec2Snapshot
     }
   end
 
