@@ -15,8 +15,8 @@ rescue LoadError
 end
 
 
-set :application, "aws-backup"
-set :repository,  "git@github.com:marsz/aws-backup.git"
+set :application, "aws-admin"
+set :repository,  "git@github.com:marsz/aws-admin.git"
 
 set :scm, :git
 

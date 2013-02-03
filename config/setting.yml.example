@@ -1,5 +1,5 @@
 defaults: &defaults
-  app_name: "aws-backup"
+  app_name: "aws-admin"
   host: "localhost"    
   facebook_app_id: 
   facebook_secret: 

@@ -1,12 +1,19 @@
 development: &default
   adapter: mysql2
   encoding: utf8
-  database: aws-backup_development
+  database: aws-admin_development
   host: localhost
   username: root
   password: ""
 
 test: &TEST
   <<: *default
-  database: aws-backup_test
+  database: aws-admin_test
 
+staging:
+  <<: *default
+  database: aws-admin
+
+production:
+  <<: *default
+  database: aws-admin
