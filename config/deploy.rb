@@ -4,6 +4,14 @@ require 'capistrano/ext/multistage'
 set :whenever_command, "bundle exec whenever"
 require "whenever/capistrano"
 require 'bundler/capistrano'
+require 'cape'
+
+Cape do
+  mirror_rake_tasks :dev do |env|
+    env['RAILS_ENV'] = rails_env
+  end
+end
+
 
 # require './config/boot'
 # require 'airbrake/capistrano'
@@ -28,6 +36,8 @@ set :rvm_type, :system
 
 set :assets_dependencies, %w(app/assets lib/assets vendor/assets Gemfile.lock config/routes.rb)
 set :whenever_command, 'bundle exec whenever'
+
+
 
 namespace :deploy do
 
