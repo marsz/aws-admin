@@ -1,0 +1,14 @@
+.ec2_parent
+  = render_list do |li|
+    - li << "備份個數: #{ec2_parent.rotate_count}"
+    - li << "備份間隔: #{ec2_parent.interval_days} 天"
+    - li << "最後備份於 #{ec2_parent.last_backup_at}" if ec2_parent.last_backup_at
+  = link_to send("ec2_#{parent}_snapshots_path", ec2_parent), :method => :post, :confirm => "確定手動備份, 將會刪除最舊的備份", :class => "btn btn-primary" do
+    %i.icon-white.icon-download-alt
+    備份
+  = " "
+  = link_to send("edit_ec2_#{parent}_path", ec2_parent), :class => "btn btn-success" do
+    %i.icon-white.icon-pencil
+    編輯
+  = " "
+  = link_to "返回列表", send("ec2_#{parent}s_path"), :class => "btn"

@@ -1,0 +1,36 @@
+%h1
+  Instance 列表
+
+= link_to '新增', new_ec2_instance_path, :class => "btn btn-primary"
+%br/
+
+- if @ec2_instances.size > 0
+  %table.table.table-hover
+    %thead
+      %tr
+        %th Instance ID
+        %th 描述
+        %th 備份個數
+        %th 間隔天數
+        %th 最後備份
+        %th
+    %tbody
+      - @ec2_instances.each do |ec2_instance|
+        %tr{ :class => cycle('', 'odd') }
+          %td= ec2_instance.instance_id
+          %td= ec2_instance.description
+          %td= ec2_instance.rotate_count
+          %td= ec2_instance.interval_days
+          %td= time_ago_in_words(ec2_instance.last_backup_at) if ec2_instance.last_backup_at
+          %td
+            = link_to ec2_instance_snapshots_path(ec2_instance), :class => "btn btn-info btn-mini" do
+              %i.icon-white.icon-info-sign
+              詳細
+            = link_to edit_ec2_instance_path(ec2_instance), :class => "btn btn-mini btn-success" do
+              %i.icon-white.icon-pencil
+              編輯
+            - this_dom_id = "ins-#{ec2_instance.id}"
+            = link_to "##{this_dom_id}", :data => { :toggle => :modal }, :class => "btn btn-danger btn-mini" do
+              %i.icon-white.icon-remove
+              刪除
+            = render :partial => "modal_destroy", :locals => { :ec2_instance => ec2_instance, :this_dom_id => this_dom_id }

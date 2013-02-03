@@ -1,0 +1,32 @@
+<div class="navbar navbar-fixed-top ">
+      <div class="navbar-inner top ">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+
+          <%= link_to(Setting.app_name, root_url, :class => "brand" )%>
+
+          <%-# render :partial => "common/search_form" %>
+
+   
+     
+          <div class="nav-collapse">
+            <% if user_signed_in? %>
+              <%= render_list :class => "nav" do |li|
+                li << link_to("EC2 Instances", ec2_instances_path)
+                li << link_to("EC2 Volumes", ec2_volumes_path)
+                li << link_to("管理者", users_path)
+              end %>
+              
+              <%= render :partial => "common/user_nav"%>
+            <% end %>
+          </div>
+    </div>
+  </div>
+
+  <%= yield :submenu %>
+
+</div>

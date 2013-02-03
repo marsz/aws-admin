@@ -1,0 +1,7 @@
+set :rails_env, "production"
+set :user, 'passenger'
+set :domain, 'example.com'
+set :branch, 'master'
+
+server "#{domain}", :web, :app, :db, :primary => true
+set :deploy_to, "/path/to_deploy"

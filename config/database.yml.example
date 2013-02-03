@@ -1,0 +1,12 @@
+development: &default
+  adapter: mysql2
+  encoding: utf8
+  database: aws-backup_development
+  host: localhost
+  username: root
+  password: ""
+
+test: &TEST
+  <<: *default
+  database: aws-backup_test
+

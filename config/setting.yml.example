@@ -1,0 +1,22 @@
+defaults: &defaults
+  app_name: "aws-backup"
+  host: "localhost"    
+  facebook_app_id: 
+  facebook_secret: 
+  admin_emails: 
+    - ""
+  google_analytics_key: ""
+  default_logo_url: "/logo.png"
+  aws:
+    access_key_id: ""
+    secret_access_key: ""
+    region: "ap-southeast-1"
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults

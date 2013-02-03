@@ -1,0 +1,16 @@
+%h1= "EC2 Instance 詳細"
+%p
+  %b Instance ID:
+  = @ec2_instance.instance_id
+%p
+  %b 描述:
+  = @ec2_instance.description
+%p
+  %b 最多備份個數:
+  = @ec2_instance.rotate_count
+%p
+  %b 間隔天數:
+  = @ec2_instance.interval_days
+= link_to '編輯', edit_ec2_instance_path(@ec2_instance)
+|
+= link_to '返回', ec2_instances_path

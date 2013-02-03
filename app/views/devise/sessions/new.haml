@@ -1,0 +1,25 @@
+%h2= "請登入"
+
+.row
+  .span6
+    .well
+      = form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
+        .control-group
+          .control-label
+            = f.label :email
+          .controls
+            = f.email_field :email
+        .control-group
+          .control-label
+            = f.label :password
+          .controls
+            = f.password_field :password
+        - if devise_mapping.rememberable?
+          .control-group
+            %label.checkbox
+              = f.check_box :remember_me
+              記憶登入狀態
+
+        %button.btn.btn-primary{ :type => "submit" } 登入
+    
+= render "links"

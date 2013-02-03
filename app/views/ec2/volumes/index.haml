@@ -1,0 +1,36 @@
+%h1
+  Volume 列表
+
+= link_to '新增', new_ec2_volume_path, :class => "btn btn-primary"
+%br/
+
+- if @ec2_volumes.size > 0
+  %table.table.table-hover
+    %thead
+      %tr
+        %th Volume ID
+        %th 描述
+        %th 備份個數
+        %th 間隔天數
+        %th 最後備份
+        %th
+    %tbody
+      - @ec2_volumes.each do |ec2_volume|
+        %tr{ :class => cycle('', 'odd') }
+          %td= ec2_volume.volume_id
+          %td= ec2_volume.description
+          %td= ec2_volume.rotate_count
+          %td= ec2_volume.interval_days
+          %td= time_ago_in_words(ec2_volume.last_backup_at) if ec2_volume.last_backup_at
+          %td
+            = link_to ec2_volume_snapshots_path(ec2_volume), :class => "btn btn-info btn-mini" do
+              %i.icon-white.icon-info-sign
+              詳細
+            = link_to edit_ec2_volume_path(ec2_volume), :class => "btn btn-mini btn-success" do
+              %i.icon-white.icon-pencil
+              編輯
+            - this_dom_id = "ins-#{ec2_volume.id}"
+            = link_to "##{this_dom_id}", :data => { :toggle => :modal }, :class => "btn btn-danger btn-mini" do
+              %i.icon-white.icon-remove
+              刪除
+            = render :partial => "modal_destroy", :locals => { :ec2_volume => ec2_volume, :this_dom_id => this_dom_id }

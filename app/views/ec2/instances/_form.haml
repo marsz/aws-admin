@@ -1,0 +1,9 @@
+= simple_form_for(@ec2_instance, :html => { :class => "form-horizontal" } ) do |f|
+  .form-inputs
+    = f.input :instance_id, :label => "instance id"
+    = f.input :description, :label => "描述"
+    = f.input :rotate_count, :label => "最多備份數"
+    = f.input :interval_days, :label => "備份區隔天數"
+  .form-actions
+    = f.submit :class => "btn btn-primary"
+    = link_to "取消", ec2_instances_path, :class => "btn"

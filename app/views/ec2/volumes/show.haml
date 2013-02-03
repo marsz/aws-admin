@@ -1,0 +1,16 @@
+%h1= "EC2 Volume 詳細"
+%p
+  %b Volume ID:
+  = @ec2_volume.volume_id
+%p
+  %b 描述:
+  = @ec2_volume.description
+%p
+  %b 最多備份個數:
+  = @ec2_volume.rotate_count
+%p
+  %b 間隔天數:
+  = @ec2_volume.interval_days
+= link_to '編輯', edit_ec2_volume_path(@ec2_volume)
+|
+= link_to '返回', ec2_volumes_path

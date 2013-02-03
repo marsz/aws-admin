@@ -1,0 +1,29 @@
+%h1="User列表"
+- if can? :create, User
+  = link_to "新增", new_user_path, :class => "btn btn-primary"    
+
+%table.table.table-hover
+  %thead
+    %tr
+      %th="#"
+      %th="name"
+      %th="email"
+      %th="超級管理者"
+      %th="工具列"
+  %tbody
+    - @users.each do |user|
+      - next unless can? :read, user
+      %tr
+        %td= user.id
+        %td= user.name
+        %td= user.email
+        %td= user.admin? ? "Y" : ""
+        %td.last
+          - if can? :update, user
+            = link_to edit_user_path(user), :class => "btn btn-success btn-mini" do
+              %i.icon-white.icon-pencil
+              編輯
+          - if can? :destroy, user
+            = link_to user_path(user), :method => :delete, :confirm => "sure?", :class => "btn btn-mini btn-danger" do
+              %i.icon-white.icon-remove
+              刪除

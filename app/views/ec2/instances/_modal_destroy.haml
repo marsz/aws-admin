@@ -1,0 +1,11 @@
+.modal.hide.fade{ :id => this_dom_id, :role => :dialog }
+  = simple_form_for ec2_instance, :method => :delete do |form|
+    .modal-header
+      = link_to "x", "#", :class => :close, :data => { :dismiss => :modal }
+      %h3= "刪除 #{render_ec2_instance_name(ec2_instance)}"
+    .modal-body
+      %label
+        %input{ :type => :checkbox, :name => :dependency }
+        = "是否連同已備份的 snapshots 一起刪除"
+    .modal-footer
+      = form.submit :value => "刪除", :class => "btn btn-danger"
