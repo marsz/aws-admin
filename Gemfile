@@ -47,10 +47,6 @@ group :development do
   gem 'venus', '~> 0.4.1'
 end
 
-group :production do
-  gem 'newrelic_rpm'
-end
-
 gem 'whenever'
 
 group :test ,:development do

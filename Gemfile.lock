@@ -111,7 +111,6 @@ GEM
     net-ssh (2.6.1)
     net-ssh-gateway (1.1.0)
       net-ssh (>= 1.99.1)
-    newrelic_rpm (3.5.0.1)
     nokogiri (1.5.5)
     orm_adapter (0.4.0)
     polyglot (0.3.3)
@@ -221,7 +220,6 @@ DEPENDENCIES
   jquery-rails
   magic_encoding
   mysql2
-  newrelic_rpm
   rails (= 3.2.11)
   rspec
   rspec-rails
