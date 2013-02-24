@@ -20,7 +20,7 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 
   gem 'execjs'
-  gem 'therubyracer'
+  gem 'therubyracer', :platforms => :ruby
   # gem "compass-rails"
 end
 
