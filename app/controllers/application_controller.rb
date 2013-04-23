@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   def authenticate_user!
     super
     unless params[:controller] == "devise/sessions" && ["create", "new"].include?(params[:action])
-      if get_resource_class
+      if params[:controller].index("ec2/")
         self.class.load_and_authorize_resource :class => get_resource_class
       else
         self.class.load_and_authorize_resource
