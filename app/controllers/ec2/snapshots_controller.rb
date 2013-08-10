@@ -1,5 +1,6 @@
 class Ec2::SnapshotsController < ApplicationController
   before_filter :get_parent
+  load_and_authorize_resource :ec2_snapshot
 
   def index
     @ec2_snapshots = @ec2_parent.snapshots

@@ -1,4 +1,6 @@
 class Ec2::InstancesController < ApplicationController
+  load_and_authorize_resource :ec2_instance
+  
   # GET /ec2/instances
   # GET /ec2/instances.json
   def index

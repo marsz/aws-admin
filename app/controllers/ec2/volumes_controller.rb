@@ -1,4 +1,6 @@
 class Ec2::VolumesController < ApplicationController
+  load_and_authorize_resource :ec2_volume
+  
   # GET /ec2/volumes
   # GET /ec2/volumes.json
   def index

@@ -7,28 +7,4 @@ class ApplicationController < ActionController::Base
     redirect_to request.env["HTTP_REFERER"] || root_url
   end
 
-  private
-
-  def authenticate_user!
-    super
-    unless params[:controller] == "devise/sessions" && ["create", "new"].include?(params[:action])
-      if params[:controller].index("ec2/")
-        self.class.load_and_authorize_resource :class => get_resource_class
-      else
-        self.class.load_and_authorize_resource
-      end
-    end
-  end
-
-  def resource_class_map
-    { "ec2/instances" => Ec2Instance,
-      "ec2/volumes" => Ec2Volume,
-      "ec2/snapshots" => Ec2Snapshot
-    }
-  end
-
-  def get_resource_class
-    resource_class_map[params[:controller]]
-  end
-
 end
